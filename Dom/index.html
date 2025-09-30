@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DOM Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+    <div id="root">
+
+    </div>
+       
+    <script>
+        
+        data = [{ id:50,name:"Mango"},{ id:450,name:"papaya"},{ id:200,name:"orange"},{ id:100,name:"Pineapple"},{id:505,name:"Berry"}]
+        console.log(data[0])
+        data = JSON.stringify(data)
+        data = JSON.parse(data)
+        console.log(data[0])
+        var root = document.getElementById("root")
+        
+        var table = `<table class='table'>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   ${loadRows()}
+                </tbody>
+            </table>`
+        root.innerHTML = table
+       
+        function createRows(fruit){
+           return `<tr>          
+            <td>${fruit.id}</td>
+            <td>${fruit.name}</td>
+            <tr>`
+        }
+
+        function loadRows(){
+            var rowData = ""
+            data.forEach(f => {
+                rowData = rowData+createRows(f)
+            });
+            return rowData
+        }
+        
+    </script>
+</body>
+</html>
